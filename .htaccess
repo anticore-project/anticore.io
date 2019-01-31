@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	
+    # *.host/assets/*
+    RewriteCond %{REQUEST_URI} ^(.+)/assets/(.+)$
+    RewriteCond %{DOCUMENT_ROOT}/%1/assets/%2 -f
+    RewriteRule (.*) - [QSA,L]
+	
+    # host/*
+	RewriteRule (.*) index.php [QSA,L]
+</IfModule>

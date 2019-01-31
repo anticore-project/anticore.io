@@ -1,0 +1,68 @@
+@import "./fonts.css";
+@import "./icons.css";
+
+body {
+    font-family: OpenSans, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    background: rgba(245, 245, 255, 1);
+}
+
+body > header {
+    box-sizing: content-box;
+}
+
+body > header,
+body > nav > a,
+body > nav > ol:first-of-type {
+    background: rgba(0, 0, 34, 1);
+}
+
+body > header > h1,
+body > header > ol > li > a,
+body > nav > a {
+    color: rgba(245, 245, 255, .7);
+}
+
+body > header > ol > li > a:not(:focus) ~ a {
+    color: transparent
+}
+
+body > header > ol > li > a + ol,
+body > header > ol > li > a ~ p {
+    background: rgba(255, 255, 181, 1);
+}
+
+body > header > ol > li > ol > li > a {
+    display: block;
+    height: 100%;
+    padding: 0 .5em;
+}
+
+body > header > ol > li > a:not(:focus) + ol:not(:empty) ~ a::after {
+    background: rgba(255, 0, 0, .8);
+}
+
+body > header,
+body > nav > ol:first-of-type > li {
+    border-bottom: .063em solid rgba(255, 255, 255, .3);
+}
+
+body > nav {
+    margin-top: 3.063em;
+}
+
+body > nav > ol:first-of-type a {
+    color: rgba(204, 204, 255, 1);
+}
+
+body > nav > ol:first-of-type a.current {
+    color: rgba(91, 192, 190, 1);
+}
+
+main > h1 {
+    font-size: 2em;
+}
+
+main > h1,
+main > p {
+    text-align: center;
+}

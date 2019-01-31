@@ -1,0 +1,27 @@
+.fetching {
+  pointer-events: none;
+}
+
+.fetching::after {
+  content: '';
+  border-radius: 100%;
+  border-top: .2em solid rgba(255, 255, 255, .9);
+  border-left: .2em double rgba(255, 255, 255, .6);
+  border-bottom: .2em dotted rgba(255, 255, 255, .3);
+  border-right: .2em solid transparent;
+  animation: fetching .8s infinite linear;
+  margin: -2.5em 0 .5em .5em;
+  width: 0;
+  display: block;
+  padding: .8em;
+  overflow: hidden;
+}
+
+@keyframes fetching {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
