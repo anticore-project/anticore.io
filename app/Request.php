@@ -41,7 +41,9 @@ namespace App {
          */
         public function isAjax(): bool
         {
-            return ($this->headers['x-requested-with'] ?? null) === 'XMLHttpRequest';
+            $this->findHeader('x-requested-with', $found);
+
+            return strtolower($found) === strtolower('XMLHttpRequest');
         }
 
         /**
@@ -64,6 +66,7 @@ namespace App {
 
             if (!$headerSent) {
                 $headerSent = true;
+				ob_implicit_flush();
 
                 $this->respond($status, $data, [
                     'Content-Type' => 'text/event-stream'
@@ -72,7 +75,7 @@ namespace App {
                 $this->respond($status, $data);
             }
 
-            ob_end_flush();
+            @ob_end_flush();
             flush();
         }
 
@@ -96,6 +99,27 @@ namespace App {
             $output = fopen('php://output', 'w');
             fwrite($output, $data);
             fclose($output);
+        }
+
+        /**
+         * @param string $name
+         * @param string|null &$found
+         * @return $this
+         */
+        private function findHeader(
+            string $name,
+            string &$found = null
+        ): self
+        {
+            $headers = getallheaders();
+            $names = array_keys($headers);
+            $key = array_search(strtolower($name), array_map('strtolower', $names));
+
+            if ($key !== false) {
+                $found = $headers[$names[$key]];
+            }
+
+            return $this;
         }
     }
 }
