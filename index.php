@@ -12,7 +12,6 @@ use App\Router;
 use App\View;
 
 SelectorCache::load('.cache/selectors.json');
-
 Router::init('html/errors/404.html', [
     '/' => 'html/pages/home.html',
     '/account' => 'html/pages/account.html',
